@@ -19,4 +19,4 @@ This repository contains the practical Python projects assigned and completed du
 ## 🛠️ Technologies Used
 * Python 3.x
 * Built-in libraries: `os`, `shutil`, `random`
-*
+
