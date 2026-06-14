@@ -10,7 +10,7 @@ This repository contains the practical Python projects assigned and completed du
 ### 2. Stock Portfolio Tracker (`/Task-2-Stock_Portfolio_Tracker`)
 * **Description:** A console application that allows users to add or update stock assets, tracks real-time hardcoded pricing valuations, displays a structured financial report, and exports the data to a `.txt` file.
 
-### 3. File Organizer Automation (`/Task-3-Task_Automation`)
+### 3. File Organizer Automation (`/Task-3-Task_Automation_Python_Scripts`)
 * **Description:** A utility script using `os` and `shutil` modules to scan directories, filter specific file formats (`.jpg`), organize them into destination folders, and generate an automated execution report.
 
 ### 4. Basic Chatbot (`/Task-4-Basic_Chatbot`)
