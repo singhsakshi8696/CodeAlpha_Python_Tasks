@@ -1,0 +1,26 @@
+def basic_chatbot():
+    print("Chatbot: Hello! I am a simple rule-based chatbot. Type 'bye' to exit.")
+    print("-----------------------------------------------------------------")
+    
+    while True:
+        user_input = input("You: ").lower().strip()
+    
+        if not user_input:
+            print("Chatbot: Please type something so we can chat!")
+            continue
+            
+        if "hello" in user_input or "hi" in user_input:
+            print("Chatbot: Hi!")
+            
+        elif "how are you" in user_input:
+            print("Chatbot: I'm fine, thanks!")
+            
+        elif "bye" in user_input or "goodbye" in user_input:
+            print("Chatbot: Goodbye!")
+            break
+            
+        else:
+            print("Chatbot: I'm a simple bot. I only understand greetings, 'how are you', or 'bye'.")
+
+if __name__ == "__main__":
+    basic_chatbot()
