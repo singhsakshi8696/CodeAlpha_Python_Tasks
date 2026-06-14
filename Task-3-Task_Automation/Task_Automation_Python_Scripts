@@ -1,0 +1,51 @@
+import os
+import shutil
+
+def organize_jpg_files():
+    source_folder = "./source_directory"
+    destination_folder = "./jpg_destination"
+
+    if not os.path.exists(source_folder):
+        os.makedirs(source_folder)
+        with open(os.path.join(source_folder, "test_image.jpg"), "w") as f:
+            f.write("dummy data")
+        print(f"Created sample directory '{source_folder}' with a dummy .jpg file.")
+
+    if not os.path.exists(destination_folder):
+        os.makedirs(destination_folder)
+        print(f"Created destination directory '{destination_folder}'.")
+
+    print("\nScanning for .jpg files...")
+  
+    moved_files_list = []
+    files_moved = 0
+
+    for filename in os.listdir(source_folder):
+        if filename.lower().endswith(".jpg"):
+            source_path = os.path.join(source_folder, filename)
+            destination_path = os.path.join(destination_folder, filename)
+            
+            try:
+                shutil.move(source_path, destination_path)
+               
+                moved_files_list.append(filename)
+                files_moved += 1
+            except Exception as e:
+                print(f"Error moving {filename}: {e}")
+
+    
+    print("\n========================================")
+    print("           AUTOMATION REPORT            ")
+    print("========================================")
+    print(f"Total .jpg files moved: {files_moved}")
+    
+    if moved_files_list:
+        print("\nList of moved files:")
+        for idx, file in enumerate(moved_files_list, 1):
+            print(f"  {idx}. {file}")
+    else:
+        print("\nNo .jpg files were found or moved.")
+    print("========================================")
+
+if __name__ == "__main__":
+    organize_jpg_files()
