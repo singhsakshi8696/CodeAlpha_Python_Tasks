@@ -1,0 +1,80 @@
+import os
+
+def stock_portfolio_tracker():
+    stock_prices = {
+        "AAPL": 180.00,
+        "TSLA": 250.00,
+        "GOOG": 150.00,
+        "AMZN": 175.00,
+        "MSFT": 400.00
+    }
+    
+    portfolio = {}
+    
+    print("Welcome to the CodeAlpha Stock Portfolio Tracker!")
+    print("-------------------------------------------------")
+    print("Available stocks in our system and their prices:")
+    for ticker, price in stock_prices.items():
+        print(f"  - {ticker}: ${price:.2f}")
+    print("-------------------------------------------------")
+    
+    while True:
+        ticker_input = input("\nEnter stock ticker to add/update (or type 'done' to calculate total): ").upper().strip()
+        
+        if ticker_input == 'DONE':
+            break
+            
+        if ticker_input not in stock_prices:
+            print(f"Sorry, '{ticker_input}' is not in our system. Please try AAPL, TSLA, GOOG, AMZN, or MSFT.")
+            continue
+            
+        try:
+            quantity_input = input(f"Enter the quantity for {ticker_input}: ").strip()
+            quantity = int(quantity_input)
+            
+            if quantity <= 0:
+                print("Quantity must be greater than 0.")
+                continue
+                
+            portfolio[ticker_input] = portfolio.get(ticker_input, 0) + quantity
+            print(f"Added {quantity} shares of {ticker_input} to your portfolio.")
+            
+        except ValueError:
+            print("Invalid input! Please enter a whole number for the quantity.")
+
+    if not portfolio:
+        print("\nYour portfolio is empty. No calculations to perform.")
+        return
+
+    total_portfolio_value = 0.0
+    report_lines = []
+    
+    report_lines.append("\n=========================================")
+    report_lines.append("        FINAL PORTFOLIO REPORT           ")
+    report_lines.append("=========================================")
+    report_lines.append(f"{'Stock':<10}{'Quantity':<12}{'Price':<12}{'Total Value':<12}")
+    report_lines.append("-" * 45)
+    
+    for ticker, qty in portfolio.items():
+        price = stock_prices[ticker]
+        stock_total = qty * price
+        total_portfolio_value += stock_total
+        report_lines.append(f"{ticker:<10}{qty:<12}${price:<11.2f}${stock_total:<11.2f}")
+        
+    report_lines.append("-" * 45)
+    report_lines.append(f"Total Portfolio Value: ${total_portfolio_value:,.2f}")
+    report_lines.append("=========================================")
+    
+    report_output = "\n".join(report_lines)
+    print(report_output)
+    
+    filename = "portfolio_summary.txt"
+    try:
+        with open(filename, "w") as file:
+            file.write(report_output)
+        print(f"\n[Success] Your portfolio report has been saved to '{filename}'!")
+    except Exception as e:
+        print(f"\n[Warning] Could not save report to file: {e}")
+
+if __name__ == "__main__":
+    stock_portfolio_tracker()
